@@ -1,6 +1,12 @@
-#ifndef FUNCTIONS_H_INCLUDED
-#define FUNCTIONS_H_INCLUDED
+#ifndef MENUS_H_INCLUDED
+#define MENUS_H_INCLUDED
 
-int printMenu(int option);
+void printNavbar(char* navbarTitle);
+void clearScreen();
+
+
+void printInitialMenu();
+void printImportDataMenu();
+void printReportOrdenedMenu();
 
 #endif

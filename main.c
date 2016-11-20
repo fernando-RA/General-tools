@@ -2,8 +2,8 @@
 
 int main(){
 
-  printCompleteMenu(2);
-  //printReportOrdenedMenu();
+printInitialMenu(2);
+//printReportOrdenedMenu();
 
   return 0;
 }
