@@ -1,6 +1,6 @@
-#include "headers.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include "headers.h"
+#include "estruturas.h"
 
 void clearScreen(){
   /** Function to clear screen */
