@@ -75,7 +75,6 @@ void printReportOrdenedMenu(){
   }
 }
 
-void printEstateReport
 void printInitialMenu(){
   /**
   Imprimir o menu inicial
