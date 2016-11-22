@@ -6,8 +6,8 @@
 
 int main(){
 
-printInitialMenu(2);
+//printInitialMenu(2);
 //printReportOrdenedMenu();
-
+  importDataFromFile("CFO_UF_municipios_brasil.csv");
   return 0;
 }
