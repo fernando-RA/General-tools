@@ -1,25 +1,61 @@
 #include <stdio.h>
 #include "headers.h"
-#include "estruturas.h"
 
+/** Function to clear screen */
 void clearScreen(){
-  /** Function to clear screen */
   //LINUX ->
   system("clear");
   //WINDOWS -
   //system("cls");*/
 }
 
+/*Imprimir Cabecalho*/
 void printNavbar(char* navbarTitle){
-  /*Imprimir Cabecalho*/
   printf("%s\n", navbarTitle);
   printf("------------------------------------------------\n\n");
 }
 
-void printImportDataMenu(){
-  /*
-  01 - Imprimir menu para confirmar importacao dos dados
-  */
+/**
+00 - Imprimir o menu inicial
+**/
+void printInitialMenu(GenTree* rootCityTree, GenTree* rootCDTree, GenTree* rootTotalTree){
+  int choosenOption;
+
+  clearScreen();
+  printNavbar("SISTEMA DE CONSULTA AO CADASTRO - CFO");
+
+  printf("01 - Importar dados\n");
+  printf("02 - Abrir menu para gerar Relatorios\n");
+  printf("03 - Relatorio de um determinado Estado\n");
+  printf("04 - Consultar via Municipio\n");
+
+  printf("Digite a opçao desejada:\n");
+  scanf("%d", &choosenOption);
+
+  switch (choosenOption) {
+    case 1:
+      //TODO menuImportData
+      printImportDataMenu(rootCityTree, rootCDTree, rootTotalTree);
+      break;
+    case 2:
+      //TODO menuReport
+      printReportOrdenedMenu();
+      break;
+    case 3:
+      //TODO menuReportState
+      break;
+    case 4:
+      //TODO menuSearchByCounty
+      break;
+    default:
+      exit(0);
+  }
+}
+
+/**
+01 - Imprimir menu para confirmar importacao dos dados
+**/
+void printImportDataMenu(GenTree* rootCityTree, GenTree* rootCDTree, GenTree* rootTotalTree){
   char inputConfirm;
 
   clearScreen();
@@ -41,10 +77,10 @@ void printImportDataMenu(){
   //   printInitialMenu();
 }
 
+/**
+02 - Imprimir o menu de relatórios
+**/
 void printReportOrdenedMenu(){
-  /**
-  02 - Imprimir o menu de relatórios
-  **/
   char choosenOptionInput;
 
   clearScreen();
@@ -72,42 +108,5 @@ void printReportOrdenedMenu(){
     case 'C':
       //TODO ordenar-TOTAL
       break;
-  }
-}
-
-void printInitialMenu(){
-  /**
-  Imprimir o menu inicial
-  **/
-  int choosenOption;
-
-  clearScreen();
-  printNavbar("SISTEMA DE CONSULTA AO CADASTRO - CFO");
-
-  printf("01 - Importar dados\n");
-  printf("02 - Abrir menu para gerar Relatorios\n");
-  printf("03 - Relatorio de um determinado Estado\n");
-  printf("04 - Consultar via Municipio\n");
-
-  printf("Digite a opçao desejada:\n");
-  scanf("%d", &choosenOption);
-
-  switch (choosenOption) {
-    case 1:
-      //TODO menuImportData
-      printImportDataMenu();
-      break;
-    case 2:
-      //TODO menuReport
-      printReportOrdenedMenu();
-      break;
-    case 3:
-      //TODO menuReportState
-      break;
-    case 4:
-      //TODO menuSearchByCounty
-      break;
-    default:
-      exit(0);
   }
 }

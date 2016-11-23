@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "estruturas.h"
 #include "headers.h"
+#include "estruturas.c"
+
+typedef struct generalTree{
+  struct cityTree* left;  //Node a esquerda da arvore
+  struct cityTree* right; //Node a direita da arvore
+  void* informations;
+  int positionNumber;
+}tree;
 
 int main(){
 
-//printInitialMenu(2);
-//printReportOrdenedMenu();
-  importDataFromFile("CFO_UF_municipios_brasil.csv");
   return 0;
 }
