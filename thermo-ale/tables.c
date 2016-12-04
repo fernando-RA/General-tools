@@ -2,9 +2,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define PRESSAO 1
+#define TEMPERATURA 2
+
+
 typedef enum { false, true } bool;
 
 FILE* importarArquivo(char* fileName);
+int definirConsulta();
+void choose_P_or_T();
+void choose_P_and_T();
 
 //Visao
 void printMenuInicial();
@@ -16,8 +23,10 @@ void header(char* headerOutput);
 
 int main(){
   int opcao;
-   printMenuInicial();
-   while(opcao);
+  char resposta;
+   char c;
+   definirConsulta();
+
   return 0;
 }
 
@@ -32,6 +41,83 @@ void algortitmo(){
  *
  * * */
 }
+
+int definirConsulta(){
+  char respostaTitulo;
+
+  header("Realizar Consulta");
+  printf("Possui titulo? (S/N)\n");
+  do{
+    printf("\n--> OPCAO: ");
+    scanf("%c", &respostaTitulo);
+    getchar();
+  }
+  while(respostaTitulo != 'S' && respostaTitulo != 'N');
+
+  if (respostaTitulo == 'S'){
+    choose_P_or_T();
+  }
+  else{
+    choose_P_and_T();
+  }
+} /*.#END definirConsulta().*/
+
+void choose_P_or_T(){
+  int opcaoT;
+  char* fileName;
+  float pressaoIN;
+
+  header("Consultar Tabela de Saturacao");
+
+  printf("Qual A tabela que deseja pesquisar?\n");
+  do{
+    printf("01 - Pressao. \n02 - Temperatura.\n\n--> OPCAO: ");
+    scanf("%d", &opcaoT);
+  }
+  while(opcaoT != PRESSAO && opcaoT != TEMPERATURA);
+
+  if (opcaoT == PRESSAO){
+    fileName = "pressure_table.txt";
+
+    header("Consultar via Pressao");
+
+    printf("Digite a 'pressão' a ser consultada: \n\n");
+    printf("--> P = ");
+    scanf("%f", &pressaoIN);
+    // if(/*foundInTable(tempIN, fileName)*/){
+    //   //return 0;
+    // }
+    // else{
+    //   //interpolate(tempIN);
+    // }
+  }
+
+  if(opcaoT == TEMPERATURA){
+    fileName = "temp_table.txt";
+
+    header("Consultar via Temperatura");
+
+    printf("Digite a 'temperatura' a ser pesquisada:\n\n" );
+    printf("--> T = ");
+    //scanf("%d", &tempIN);
+    //if(foundInTable(tempIN, "temp_table.txt"))
+  }
+} /*.#END choose_P_or_T().*/
+
+void choose_P_and_T(){
+  float tempIN;
+  float pressaoIN;
+
+  header("Pesquisa sem Titulo:");
+  printf("Digite a 'pressão' a ser consultada: \n\n");
+  printf("--> P = ");
+  scanf("%f", &pressaoIN);
+
+  printf("Digite a 'temperatura' a ser consultada:\n\n" );
+  printf("--> T = ");
+  scanf("%d", &tempIN);
+}
+
 
 FILE* importarArquivo(char* fileName){
   FILE* toReturn;
@@ -52,9 +138,9 @@ void printMenuInicial(){
 
   header("Propriedades do estado Termodinamico - Refrigerante");
 
-  printf("\n01. Importar dados.\n");
-  printf("02. Consultar tabelas.\n");
-  printf("03. Sair.\n");
+  printf("\n01. Consultar dados especificos\n");
+  printf("02. Imprimir tabela completa.\n");
+  printf("Sair");
   printf("\nDigite a opçao desejada: ");
   scanf("%d", &opcao);
 
