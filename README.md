@@ -1,4 +1,8 @@
-Sistema de consulta ao cadastro 
-Conselho Federal de Odontologia (CFO)
+# General C files and programs
 
-Trabalho Final - Estrutura de dados e Algoritmos
+##In this repository you will find:
+
+* Projects
+* Algorithms
+* Tests
+* Programming-marathon exercises
