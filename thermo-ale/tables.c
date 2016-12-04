@@ -12,6 +12,7 @@ FILE* importarArquivo(char* fileName);
 int definirConsulta();
 void choose_P_or_T();
 void choose_P_and_T();
+bool foundValueInTable(float toSearch, char* fileName);
 
 //Visao
 void printMenuInicial();
@@ -21,26 +22,20 @@ void tabular(int tabValue);
 FILE* definirTabela(bool hasX);
 void header(char* headerOutput);
 
+/*TODO -> ALGORITMO PARA INTERPOLAR */
+/*TODO -> FORMATAR PRINT OUTPUT */
+/*TODO -> OUTRA TABELA/ DESCOBRIR O QUE É Tp*/
+/*TODO -> COMO ACESSAR TABELA SUPERAQUECIDO*/
+/*TODO -> SEPARAR O ARQUIVO HEADER*/
+
 int main(){
   int opcao;
   char resposta;
    char c;
-   definirConsulta();
-
+  foundValueInTable(20, "temp_table.txt");
   return 0;
 }
 
-
-void algortitmo(){
-/*
- *Primeira tabela: para saber se estara titulo varia de zero ate um, descarta a tabela de valor super aquecido. SE of titylo for 1 ele vai para a segunda primeira tabela. Titulo  é a porcentagem de gas da amostra. Varia de zero ate um.
- *
- * x = titulo 0 < x < 1
- * T = temperatura
- * P pressao;
- *
- * * */
-}
 
 int definirConsulta(){
   char respostaTitulo;
@@ -62,10 +57,11 @@ int definirConsulta(){
   }
 } /*.#END definirConsulta().*/
 
+
 void choose_P_or_T(){
   int opcaoT;
   char* fileName;
-  float pressaoIN;
+  float pressaoIN, tempIN;
 
   header("Consultar Tabela de Saturacao");
 
@@ -84,12 +80,12 @@ void choose_P_or_T(){
     printf("Digite a 'pressão' a ser consultada: \n\n");
     printf("--> P = ");
     scanf("%f", &pressaoIN);
-    // if(/*foundInTable(tempIN, fileName)*/){
-    //   //return 0;
-    // }
-    // else{
-    //   //interpolate(tempIN);
-    // }
+     if(foundInTable(tempIN, fileName)){
+       return 0;
+     }
+     else{
+       //interpolate(tempIN);
+     }
   }
 
   if(opcaoT == TEMPERATURA){
@@ -99,12 +95,53 @@ void choose_P_or_T(){
 
     printf("Digite a 'temperatura' a ser pesquisada:\n\n" );
     printf("--> T = ");
-    //scanf("%d", &tempIN);
-    //if(foundInTable(tempIN, "temp_table.txt"))
+    scanf("%d", &tempIN);
+
+    if(foundValueInTable(tempIN, "temp_table.txt") == true){
+        printf("Aperte qualquer tecla para voltar ao menu principal.\n");
+        getchar();
+        getchar();
+    }
+    else{
+    }
   }
 } /*.#END choose_P_or_T().*/
 
+bool foundValueInTable(float toSearch, char* fileName){
+  FILE* openedFile;
+  char* string = (char*) malloc(sizeof(char)*400);
+  int temp;
+  double SatVap, specificVol[3], internalEnergy[4], enthalphy[4], entropy[4];
+
+  openedFile = importarArquivo(fileName);
+
+  if(openedFile == NULL){
+    printf("\nAperte ENTER para voltar ao menu.\n");
+    getchar();
+    getchar();
+    return false;
+  }
+
+  while(fgets(string, 400, openedFile)){
+    printf("String = %s\n", string);
+    //
+    sscanf(string,"%d,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf", &temp, &SatVap ,&specificVol[0], &specificVol[1],
+                                      &internalEnergy[0], &internalEnergy[1], &internalEnergy[2],
+                                      &enthalphy[0], &enthalphy[1], &enthalphy[2],
+                                      &entropy[0], &entropy[1], &entropy[2]);
+
+    if(temp == toSearch){
+      printf("%lf\n", entropy[2]);
+      return true;
+    }
+  }
+  return false;
+}
+
+
+
 void choose_P_and_T(){
+  /*TODO*/
   float tempIN;
   float pressaoIN;
 
@@ -118,13 +155,12 @@ void choose_P_and_T(){
   scanf("%d", &tempIN);
 }
 
-
 FILE* importarArquivo(char* fileName){
   FILE* toReturn;
   toReturn = fopen(fileName, "r");
 
   if (toReturn == NULL) {
-    printf("Erro ao abrir o arquivo '%s'! Confira a existência deste!\n", fileName);
+    printf("\nErro ao abrir o arquivo '%s'! Confira a existência deste!\n", fileName);
     return NULL;
   }
   else{
