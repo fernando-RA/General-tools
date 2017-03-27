@@ -1,5 +1,6 @@
-#include <stdio.h>
-#include "composedTypes.h"
+#include "functions.h"
+#include "geometricOperations.h"
+
 #include <stdlib.h>
 
 void header(char* headerOutput)

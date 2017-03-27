@@ -1,6 +1,6 @@
 CC=gcc
-FILES=main.c
-FLAGS=-lm -Wall -ansi -I. -pedantic -o
+FILES=main.c functions.c geometricOperations.c
+FLAGS=-lm -Wall -o
 OUT=prog.out
 
 make:
