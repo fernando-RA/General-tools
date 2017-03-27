@@ -1,33 +1,86 @@
-#include "composed_types.h"
+#include <stdio.h>
+#include "composedTypes.h"
+#include <stdlib.h>
 
+void header(char* headerOutput)
+{
+  system("clear");
+  printf("---------------------------------------\n");
+  printf("%s\n", headerOutput);
+  printf("---------------------------------------\n");
+}
 
-void menu(){
-  int option;
+void printMenuInicial()
+{
+  int opcao;
 
-  printf("CONVEXITY CALCULATOR\n");
-  printf("------------------------------------------------\n");
+  header("CALCULO DE CONVEXIDADE DO QUADRILATERO");
 
-  while(1){
-    system("clear");
-    printf("0 - SAIR\n");
-    printf("1 - CALCULAR CONVEXIDADE DO QUADRILATERO\n");
+  printf("\n01. Calcular dados do quadrilatero\n");
+  printf("02. Sair");
+  printf("\nDigite a opçao desejada: ");
+  scanf("%d", &opcao);
 
-    switch (scanf("%d", &option)) {
-      case 0:
-        exit(0);
-      case 1:
-        calculate_quadrangle();
-    }
+  switch (opcao) {
+    case 1:
+      printf("TESTE\n");
+      calculate_quadrangle();
+      break;
+    case 2:
+      exit(0);
+      break;
+    default:
+      printMenuInicial();
   }
 }
 
-void calculate_quadrangle(){
-  Quadrangle toCalculate;
-  toCalculate = input_quadrangle();
-  output_geometry(toCalculate);
+
+void calculate_geometry(Quadrangle quad)
+{
+  print_points_distance(quad);
+  print_convexity(quad);
+  print_area(quad);
 }
 
-Quadrangle input_quadrangle(){
+void print_area(Quadrangle quad)
+{
+  int is_convex = check_convexity(quad);
+
+  if(is_convex == 1) {
+    double area = check_area(quad);
+    printf("Calulated AREA: %.2lf\n", area);
+  }
+}
+
+void print_convexity(Quadrangle quad)
+{
+  int is_convex = check_convexity(quad);
+
+  if(is_convex == 1) {
+    printf("Convex Quadrangle\n");
+  }
+  else if( is_convex == -1) {
+    printf("The points does not form a quadrangle\n");
+  }
+  else {
+    printf("It is not convex\n");
+  }
+}
+
+void print_points_distance(Quadrangle quad)
+{
+
+}
+
+void calculate_quadrangle()
+{
+  Quadrangle toCalculate;
+  toCalculate = input_quadrangle();
+  calculate_geometry(toCalculate);
+}
+
+Quadrangle input_quadrangle()
+{
   Quadrangle quad;
   quad.side = 4;
 
@@ -39,7 +92,7 @@ Quadrangle input_quadrangle(){
   return quad;
 }
 
-double input_point()
+Point input_point()
 {
   Point toRead;
   double x, y;

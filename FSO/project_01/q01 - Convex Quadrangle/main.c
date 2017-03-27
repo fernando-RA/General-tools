@@ -13,38 +13,7 @@
 #include "composedTypes.h"
 
 
-int print_header(char* message){
-  int option;
-
-  system("clear");
-  printf("CONVEXITY CALCULATOR\n");
-  printf("------------------------------------------------\n");
-  printf("\n %s \n", message);
-  printf("0 - SAIR\n");
-  printf("1 - CALCULAR CONVEXIDADE DO QUADRILATERO\n");
-
-  scanf("%d", &option);
-
-  return option;
-}
-
-void menu(){
-  
-  while(1){
-    switch (print_header("Choose a option")) {
-        case 0:
-          exit(0);
-        case 1:
-          printf("TESTE\n");
-          break;
-          /*calculate_quadrangle();*/
-        default:
-          print_header("Errou");
-    }
-  }
-}
-
 int main(){
-  menu();
+  
   return 0;
 }
