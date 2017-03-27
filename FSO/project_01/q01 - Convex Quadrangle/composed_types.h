@@ -5,6 +5,8 @@ typedef struct {
 } Point;
 
 typedef struct {
-  double x1,x2, x3, x4;
-  double y1, y2, y3, y4;
+  double dist_ab;
+  double dist_bc;
+  double dist_cd;
+  double dist_da;
 } Quadrangle;

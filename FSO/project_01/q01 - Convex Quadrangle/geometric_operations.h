@@ -1,3 +1,5 @@
-double calc_side_lenght(double point1, double point2);
-int calc_convex_condition();
-double calc_quadrilateral_area();
+double calculate_point_distance(Point p, point q);
+
+double calculate_area(Quadrangle quad);
+
+double calculate_convexity_condition();
