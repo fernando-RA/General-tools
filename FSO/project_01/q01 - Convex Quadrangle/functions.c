@@ -1,21 +1,57 @@
 #include "composed_types.h"
 
-Quadrangle read_input_points(){
-  Point a, b, c, d;
-  Quadrangle new;
 
-  scanf("%lf %lf", &a.x, &a.y);
-  scanf("%lf %lf", &b.x, &b.y);
-  scanf("%lf %lf", &c.x, &c.y);
-  scanf("%lf %lf", &d.x, &d.y);
+void menu(){
+  int option;
 
-  new.dis_ab = calculate_point_distance(a, b);
+  printf("CONVEXITY CALCULATOR\n");
+  printf("------------------------------------------------\n");
 
-  new.dist_bc = calculate_point_distance(b, c);
+  while(1){
+    system("clear");
+    printf("0 - SAIR\n");
+    printf("1 - CALCULAR CONVEXIDADE DO QUADRILATERO\n");
 
-  new.dist_cd = calculate_point_distance(c, d);
+    switch (scanf("%d", &option)) {
+      case 0:
+        exit(0);
+      case 1:
+        calculate_quadrangle();
+    }
+  }
+}
 
-  new.dist_da = calculate_point_distance(d, a);
+void calculate_quadrangle(){
+  Quadrangle toCalculate;
+  toCalculate = input_quadrangle();
+  output_geometry(toCalculate);
+}
 
-  return new;
+Quadrangle input_quadrangle(){
+  Quadrangle quad;
+  quad.side = 4;
+
+  quad.A = input_point();
+  quad.B = input_point();
+  quad.C = input_point();
+  quad.D = input_point();
+
+  return quad;
+}
+
+double input_point()
+{
+  Point toRead;
+  double x, y;
+
+  if( scanf("%lf %lf",&x ,&y) == 2)
+  {
+      toRead.x = x;
+      toRead.y = y;
+  }
+  else {
+    printf("Error on reading input points. Exiting");
+    exit(1);
+  }
+  return toRead;
 }

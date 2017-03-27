@@ -1,6 +1,6 @@
 CC=gcc
 FILES=main.c
-FLAGS=-lm -Wall -o
+FLAGS=-lm -Wall -ansi -I. -pedantic -o
 OUT=prog.out
 
 make:
@@ -11,4 +11,3 @@ clean:
 
 run:
 	./${OUT}
-	
