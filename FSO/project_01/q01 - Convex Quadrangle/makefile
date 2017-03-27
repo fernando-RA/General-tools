@@ -1,9 +1,14 @@
 CC=gcc
 FILES=main.c
-FLAGS=-o -lm
+FLAGS=-lm -Wall -o
+OUT=prog.out
 
 make:
-	${CC} ${FILES} ${FLAGS} prog.out
+	${CC} ${FILES} ${FLAGS} ${OUT}
 
 clean:
 	rm -f *.out
+
+run:
+	./${OUT}
+	
