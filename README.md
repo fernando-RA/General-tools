@@ -1,6 +1,6 @@
 # General C files and programs
 
-##In this repository you will find:
+## In this repository you will find:
 
 * Projects
 * Algorithms
