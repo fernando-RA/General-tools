@@ -45,17 +45,17 @@ void calculate_geometry(Quadrangle quad)
 
 void print_area(Quadrangle quad)
 {
-  int is_convex = check_convexity(quad);
+  int is_convex = calculate_convexity_condition(quad);
 
   if(is_convex == 1) {
-    double area = check_area(quad);
+    double area = calculate_area(quad);
     printf("Calulated AREA: %.2lf\n", area);
   }
 }
 
 void print_convexity(Quadrangle quad)
 {
-  int is_convex = check_convexity(quad);
+  int is_convex = calculate_convexity_condition(quad);
 
   if(is_convex == 1) {
     printf("Convex Quadrangle\n");
