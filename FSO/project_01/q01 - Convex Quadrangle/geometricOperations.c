@@ -6,22 +6,21 @@
 
 double calculate_area(Quadrangle quad)
 {
-  int single = 0;
+  int i = 0;
   double area = 0;
 
   if(calculate_convexity_condition(quad) == 1){
     Point points[5] = {quad.A, quad.B, quad.C, quad.D, quad.A};
-
-      for(single = 0; single < quad.side; single++){
-        area += points[single].x * points[single+1].y;
-        area -= points[single+1].x * points[single].y;
+      for(i = 0; i < quad.side; i++){
+        area += points[i].x * points[i+1].y;
+        area -= points[i+1].x * points[i].y;
       }
-    area = fabs(area) / 2.0;
+    area = fabs(area) * 0.5;
   }
   else{
     area = 0;
   }
-  return 0;
+  return area;
 }
 
 

@@ -14,8 +14,8 @@
 #include "functions.h"
 
 int main(){
-  //TODO -> INTEGRATION BETWEEN FUNCIONALITIES.
-  //TODO -> TESTS & DOCUMENTATION
+
   printMenuInicial();
+
   return 0;
 }

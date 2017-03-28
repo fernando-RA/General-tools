@@ -37,6 +37,7 @@ void printMenuInicial()
 
 void calculate_geometry(Quadrangle quad)
 {
+
   print_points_distance(quad);
   print_convexity(quad);
   print_area(quad);
@@ -48,7 +49,7 @@ void print_area(Quadrangle quad)
 
   if(is_convex == 1) {
     double area = calculate_area(quad);
-    printf("Calulated AREA: %.2lf\n", area);
+    printf("\nAREA Calculada: %.2lf\n", area);
   }
 }
 
@@ -57,13 +58,13 @@ void print_convexity(Quadrangle quad)
   int is_convex = calculate_convexity_condition(quad);
 
   if(is_convex == 1) {
-    printf("Convex Quadrangle\n");
+    printf("\nEste quadrilatero e convexo\n");
   }
   else if( is_convex == -1) {
-    printf("The points does not form a quadrangle\n");
+    printf("Estes pontos nao formam um quadrilatero\n");
   }
   else {
-    printf("It is not convex\n");
+    printf("Nao e convexo\n");
   }
 }
 
@@ -74,7 +75,7 @@ void print_points_distance(Quadrangle quad)
   char id_points[5] = { 'A','B','C','D','A' };
   Point points[5] = { quad.A, quad.B, quad.C, quad.D, quad.A };
 
-  printf("Distance between points:\n");
+  printf("\nDistance between points:\n");
 
   for(i = 0; i < quad.side; i++){
     printf("(%c,%c): %.2lf\n", id_points[i], id_points[i+1],
@@ -106,7 +107,7 @@ Point input_point()
 {
   Point toRead;
   double x, y;
-  printf("Type a Ordered pair (x, y):\n");
+  printf("Digite um par ordenado (x, y):\n");
 
   if( scanf("%lf %lf",&x ,&y) == 2)
   {
