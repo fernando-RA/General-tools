@@ -24,7 +24,6 @@ void printMenuInicial()
 
   switch (opcao) {
     case 1:
-      printf("TESTE\n");
       calculate_quadrangle();
       break;
     case 2:
@@ -70,7 +69,17 @@ void print_convexity(Quadrangle quad)
 
 void print_points_distance(Quadrangle quad)
 {
+  int i;
 
+  char id_points[5] = { 'A','B','C','D','A' };
+  Point points[5] = { quad.A, quad.B, quad.C, quad.D, quad.A };
+
+  printf("Distance between points:\n");
+
+  for(i = 0; i < quad.side; i++){
+    printf("(%c,%c): %.2lf\n", id_points[i], id_points[i+1],
+                                calculate_point_distance(points[i], points[i+1]));
+  }
 }
 
 void calculate_quadrangle()
@@ -97,6 +106,7 @@ Point input_point()
 {
   Point toRead;
   double x, y;
+  printf("Type a Ordered pair (x, y):\n");
 
   if( scanf("%lf %lf",&x ,&y) == 2)
   {
@@ -104,7 +114,7 @@ Point input_point()
       toRead.y = y;
   }
   else {
-    printf("Error on reading input points. Exiting");
+    printf("\n-----\nError on reading input points. Exiting\n\n");
     exit(1);
   }
   return toRead;

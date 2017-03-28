@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 void printMenuInicial();
+void header(char* headerOutput);
+
 void calculate_geometry(Quadrangle quad);
 
 void print_area(Quadrangle quad);
@@ -17,7 +19,5 @@ int check_convexity(Quadrangle quad);
 
 Quadrangle input_quadrangle();
 Point input_point();
-
-Quadrangle input_quadrangle();
 
 #endif

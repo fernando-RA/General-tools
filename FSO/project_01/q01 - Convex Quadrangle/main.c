@@ -11,13 +11,11 @@
 #include <math.h>
 
 #include "composedTypes.h"
-
+#include "functions.h"
 
 int main(){
-  //TODO -> LOGIC TO CALCULATE IF IT IS CONVEX.
-  //TODO -> LOGIC TO CALCULATE THE AREA.
   //TODO -> INTEGRATION BETWEEN FUNCIONALITIES.
   //TODO -> TESTS & DOCUMENTATION
-
+  printMenuInicial();
   return 0;
 }
