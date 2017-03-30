@@ -1,6 +1,7 @@
 CC=gcc
 FILES=main.c
-FLAGS=-lm -Wall -o
+FLAGS=-Wall -o
+TESTFLAGS=-a bababa -30 33 21
 OUT=prog.out
 
 make:
@@ -9,5 +10,5 @@ make:
 clean:
 	rm -f *.out
 
-run:
-	./${OUT}
+teste:
+	./${OUT} ${TESTFLAGS}
