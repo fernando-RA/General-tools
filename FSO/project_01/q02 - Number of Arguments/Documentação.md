@@ -14,7 +14,7 @@
 
 * #### Telas:
   * Tela inicial e Resultados
-    ![Tela inicial](http://imgur.com/a/YkeQw)
+    ![Tela inicial](http://i.imgur.com/0BiNigw.png)
 
 
 * #### Limitações conhecidas:

@@ -20,11 +20,11 @@
 
   * Menu de digitação dos pares ordenados ( x, y )
 
-  ![Pares Ordenados](http://imgur.com/a/8SsJY)
+  ![Pares Ordenados](http://i.imgur.com/USGrFN3.png)
 
   * Resultados esperados
 
-  ![Resultados](http://imgur.com/lXwjxp0)
+  ![Resultados](http://i.imgur.com/lXwjxp0.png)
 
 * #### Limitações conhecidas:
   * O programa possui limitação para valores com precisão menor que 10^10;
