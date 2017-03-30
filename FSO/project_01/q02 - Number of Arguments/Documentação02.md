@@ -1,5 +1,7 @@
 # Documentação minima da aplicação 02
 
+### ALUNOS
+  * Fernando Ribeiro Aguilar - 14/0139281
 ----
 
 ## Calculo do numero de argumentos iniciais

@@ -1,5 +1,7 @@
 # Documentação minima da aplicação 01
 
+### ALUNOS
+  * Fernando Ribeiro Aguilar - 14/0139281
 ----
 
 ## Calculo da convexidade do quadrilátero
