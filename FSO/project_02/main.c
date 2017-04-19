@@ -1,124 +1,54 @@
-#define _POSIX_SOURCE
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include <errno.h>
 #include <sys/types.h>
-#include <time.h>
-#include <stdbool.h>
+#include <unistd.h>
 
 #define BUFFER 256
 
-int alarm_stop = 0;
-unsigned int alarm_period = 3;
+int main(void)
+{
+    int fd[2]; /* File descriptors pro Pipe*/
+    pid_t pid; /* Variável para armazenar o pid*/
 
-void on_alarm(int signal){
-	if(alarm_stop) return;
-	else alarm(alarm_period);
-	printf("HM É MESMO\n");
-}
+    /* Criando nosso Pipe */
+    if(pipe(fd)<0) {
+        perror("pipe") ;
+        return -1 ;
+    }
 
-int main(){
-	int lazy_child;
-	int worker_child;
-	char msg[BUFFER], msg_usr[BUFFER];
-	int n = 0;
-	int pipefd[4];
-	pid_t child[2];
-	int random = rand() % 3;
+    /* Criando o processo filho*/
+    if ((pid = fork()) < 0)
+    {
+        perror("fork");
+        exit(1);
+    }
+    /* Processo Pai*/
+    if (pid > 0)
+    {
+        /*No pai, vamos ESCREVER, então vamos fechar a LEITURA do Pipe neste lado*/
+        close(fd[0]);
 
-	printf("DATA : %s HORA: %s\n",__DATE__,__TIME__);
+        char str[BUFFER] = "Aprendi a usar Pipes em C!";
+        printf("String enviada pelo pai no Pipe: '%s'\n", str);
 
-	if (pipe(pipefd)<0){
-		perror("pipe");
-		return -1;
-	}
+        /* Escrevendo a string no pipe */
+        write(fd[1], str, sizeof(str) + 1);
+        exit(0);
+    }
+    /* Processo Filho*/
+    else
+    {
+        char str_recebida[BUFFER];
 
-	//Criando processo filho
-	lazy_child = fork();
+        /* No filho, vamos ler. Então vamos fechar a entrada de ESCRITA do pipe */
+        close(fd[1]);
 
-	if (lazy_child == -1) {
-		perror("fork");
-		return -1;
-	}
+        /* Lendo o que foi escrito no pipe, e armazenando isso em 'str_recebida' */
+        read(fd[0], str_recebida, sizeof(str_recebida));
 
-	if (lazy_child) {
-		/*Filho preguiçoso escrevendo */
+        printf("String lida pelo filho no Pipe : '%s'\n\n", str_recebida);
+        exit(0);
+    }
 
-			char msg_time[10] = __TIME__;
-			char *mensage = strcat(msg_time, ": Mensagem 1 do filho dorminhoco \n");
-
-			/* Operação obrigatória de fechar o descritor*/
-			close(pipefd[0]);
-
-			/*Escrever no pipe*/
-			write(pipefd[1],mensage, strlen(mensage)+1);
-
-			//printf("Informe a mensagem:\n");
-			//scanf("%s",msg_usr);
-			//close(pipefd[1]);
-
-			//printf("%s\n",msg_usr );
-			//sleep(5);
-			//printf("DOIDO\n");
-
-	}else{
-		signal(SIGALRM, on_alarm);
-		alarm(alarm_period);
-		FILE *output = fopen("output.txt", "wb");
-
-		for(;;){
-			// Processo Pai
-			/* Operação obrigatória de fechar o descritor*/
-			close(pipefd[1]);
-
-			/*Lê a mensagem do pipe que vem do filho preguiçoso*/
-			read(pipefd[0],msg, sizeof msg);
-			printf("A mensagem do filho preguiçoso: %s\n", msg);
-
-			//Escrita do output file
-
-			if(output == NULL){
-				printf("Erro ao abrir o arquivo!\n");
-				exit(1);
-			}
-
-			fprintf(output, msg);
-
-			close(pipefd[0]);
-
-		}
-		fclose(output);
-		kill(getpid(), SIGKILL);
-	}
-
-	// for(n=0; n<2; n++){
-	// 	if(fork()==0){
-	// 		child[n] = fork();
-	// 		printf("MEU NOME: %d\n", child[n]);
-	// 		printf("MEU PAI: %d\n", getppid());
-	// 		_exit(0);
-	// 	}
-	// }
-	//
-	//
-	// for(n=0; n<2; n++){
-	// 	wait(NULL);
-	// }
-	//
-	//
-	// printf("FILHO preguiçoso %d\n", child[0]);
-	// printf("FILHO trabalhador %d\n", child[1]);
-
-	/*if(lazy_child == 0){
-		printf("Eu sou o processo preguiçoso %d\n", getpid());
-	}else{
-		int work_child = fork();
-		printf("Eu sou o processo pai %d\n", getpid());
-	}*/
-
-	return 0;
+    return(0);
 }
