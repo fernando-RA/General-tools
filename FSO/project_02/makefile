@@ -41,3 +41,6 @@ clean:
 remove: clean
 		@$(rm) $(BINDIR)/$(TARGET)
 		@echo "Executable removed!"
+
+run:
+		./$(BINDIR)/$(TARGET)
