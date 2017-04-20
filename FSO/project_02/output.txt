@@ -1,0 +1,54 @@
+0:01.324: 0:01.136: Mensagem do 01 do filho dorminhoco
+
+0:02.436: 0:02.268: Mensagem do 02 do filho dorminhoco
+
+0:02.479: 0:02.333: Mensagem do 03 do filho dorminhoco
+
+0:03.660: 0:03.462: Mensagem do 04 do filho dorminhoco
+
+0:05.699: 0:05.535: Mensagem do 05 do filho dorminhoco
+
+0:06.804: 0:06.649: Mensagem do 06 do filho dorminhoco
+
+0:07.926: 0:07.754: Mensagem do 07 do filho dorminhoco
+
+0:07.986: 0:07.836: Mensagem do 08 do filho dorminhoco
+
+0:07.1051: 0:07.896: Mensagem do 09 do filho dorminhoco
+
+0:08.1122: 0:08.960: Mensagem do 10 do filho dorminhoco
+
+0:10.1220: 0:10.1066: Mensagem do 11 do filho dorminhoco
+
+0:11.1327: 0:11.1174: Mensagem do 12 do filho dorminhoco
+
+0:13.1470: 0:13.1302: Mensagem do 13 do filho dorminhoco
+
+0:14.1560: 0:14.1392: Mensagem do 14 do filho dorminhoco
+
+0:16.1767: 0:16.1560: Mensagem do 15 do filho dorminhoco
+
+0:17.1837: 0:17.1687: Mensagem do 16 do filho dorminhoco
+
+0:17.1903: 0:17.1747: Mensagem do 17 do filho dorminhoco
+
+0:17.1945: 0:17.1802: Mensagem do 18 do filho dorminhoco
+
+0:18.2073: 0:18.1906: Mensagem do 19 do filho dorminhoco
+
+0:19.2188: 0:19.1984: Mensagem do 20 do filho dorminhoco
+
+0:21.2257: 0:21.2107: Mensagem do 21 do filho dorminhoco
+
+0:23.2376: 0:23.2221: Mensagem do 22 do filho dorminhoco
+
+0:23.2430: 0:23.2286: Mensagem do 23 do filho dorminhoco
+
+0:23.3851: 0:23.2356: Mensagem do 24 do filho dorminhoco
+
+0:25.2623: 0:25.2458: Mensagem do 25 do filho dorminhoco
+
+0:27.2707: 0:27.2544: Mensagem do 26 do filho dorminhoco
+
+0:29.2772: 0:29.2621: Mensagem do 27 do filho dorminhoco
+
