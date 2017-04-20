@@ -1,0 +1,34 @@
+0:01.281: 0:01.107: Mensagem do 01 do filho dorminhoco
+
+0:02.468: 0:02.268: Mensagem do 02 do filho dorminhoco
+
+0:02.536: 0:02.355: Mensagem do 03 do filho dorminhoco
+
+0:02.774835: 0:02.774707: Mensagem do 01 do usuario: <123>
+
+0:03.665: 0:03.469: Mensagem do 04 do filho dorminhoco
+
+0:03.750205: 0:03.750082: Mensagem do 01 do usuario: <12>
+
+0:04.302291: 0:04.302211: Mensagem do 02 do usuario: <1>
+
+0:05.816: 0:05.635: Mensagem do 05 do filho dorminhoco
+
+0:05.870640: 0:05.870551: Mensagem do 03 do usuario: <teste>
+
+0:06.935: 0:06.776: Mensagem do 06 do filho dorminhoco
+
+0:06.870982: 0:06.870862: Mensagem do 02 do usuario: <123>
+
+0:07.1140: 0:07.941: Mensagem do 07 do filho dorminhoco
+
+0:07.1209: 0:07.1027: Mensagem do 08 do filho dorminhoco
+
+0:07.1230: 0:07.1088: Mensagem do 09 do filho dorminhoco
+
+0:08.1420: 0:08.1236: Mensagem do 10 do filho dorminhoco
+
+0:09.423080: 0:09.422982: Mensagem do 04 do usuario: <1234>
+
+0:10.1577: 0:10.1385: Mensagem do 11 do filho dorminhoco
+

@@ -12,6 +12,27 @@
 
 #define TIME_MAX 30
 
+
+/*
+  TODO -> Refactor main
+          Refactor active_process
+          Refactor children
+          Refactor comunication
+          Refactor lazy_child
+          Refactor time_functions
+          Refactor writers
+          Change code
+          Fix name output.txt
+          Print if it is on process -> to receive an input
+          Testar 30 segundos finalizar execução
+          Fazer cabeçalho para arquivo
+          Documentação:
+            * Sistema Operacional
+            * Ambiente de desenvolvimento
+            * Telas/Instrução de Uso
+            * Limitações conhecidas
+*/
+
 pid_t active_process = -1;
 pid_t lazy_child = -1;
 
@@ -64,24 +85,24 @@ int main(){
     dup2 (active_process_pipe[0], STDIN_FILENO);
     dup2 (lazy_child_pipe[0], STDIN_FILENO);
 
-    FILE* output = fopen("output.txt", "w");
+    FILE* output = fopen("Response.txt", "w");
 
     FILE* pipe_active_child;
     pipe_active_child = fdopen (active_process_pipe[0], "r");
 
     FILE* pipe_lazy_child;
     pipe_lazy_child = fdopen (lazy_child_pipe[0], "r");
-    
+
     fd_set fds;
     FD_ZERO(&fds); // Clear FD set for select
-    
+
     while(1){
 
       FD_SET(active_process_pipe[0], &fds);
       FD_SET(lazy_child_pipe[0], &fds);
 
       select(FD_SETSIZE, &fds, NULL, NULL, 0);
-      
+
 
       if (FD_ISSET(active_process_pipe[0], &fds)) {
         get_message_pipe_and_write_file (pipe_active_child, output, &time_begin);

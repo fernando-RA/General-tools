@@ -3,6 +3,7 @@
 #include <sys/time.h>
 
 #include "writers.h"
+#include "time_functions.h"
 
 void writer_pipe_active_process(const char* message, struct timeval *time_elapsed, FILE* pipe, int i) {
   fprintf(pipe, "0:%02ld.%03ld: Mensagem do %02d do usuario: <%s>\n", time_elapsed->tv_sec, time_elapsed->tv_usec, i, message);
