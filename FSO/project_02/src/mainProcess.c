@@ -70,6 +70,7 @@ void controll_process(FILE* outputFile){
 void finish_execution() {
     kill(g_activeProcess, SIGTERM);
     kill(g_sleepyChild, SIGTERM);
+    printf("Finishing...\n");
     exit(0);
 }
 
