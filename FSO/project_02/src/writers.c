@@ -5,28 +5,27 @@
 #include "writers.h"
 #include "time_functions.h"
 
-void writer_pipe_active_process(const char* message, struct timeval *time_elapsed, FILE* pipe, int i) {
-  fprintf(pipe, "0:%02ld.%03ld: Mensagem do %02d do usuario: <%s>\n", time_elapsed->tv_sec, time_elapsed->tv_usec, i, message);
-  fflush(pipe);
-  return;
-}
-
-void writer_pipe_lazy_child(struct timeval *time_elapsed, FILE* pipe, int i) {
-  fprintf(pipe, "0:%02ld.%03ld: Mensagem do %02d do filho dorminhoco\n", time_elapsed->tv_sec, time_elapsed->tv_usec, i);
+void output_pipe_active_process(const char* message, struct timeval *elapsedTime, FILE* pipe, int i) {
+  fprintf(pipe, "0:%02ld.%03ld: Mensagem do %02d do usuario: <%s>\n", elapsedTime->tv_sec, elapsedTime->tv_usec, i, message);
   fflush(pipe);
 }
 
-void get_message_pipe_and_write_file(FILE* pipe, FILE *output, struct timeval *time_begin) {
+void writer_pipe_lazy_child(struct timeval *elapsedTime, FILE* pipe, int i) {
+  fprintf(pipe, "0:%02ld.%03ld: Mensagem do %02d do filho dorminhoco\n", elapsedTime->tv_sec, elapsedTime->tv_usec, i);
+  fflush(pipe);
+}
+
+void get_message_pipe_and_write_file(FILE* pipe, FILE *outputFilePtr, struct timeval *startTime) {
   char buffer[1024];
 
-  struct timeval time_end, time_elapsed;
-  gettimeofday(&time_end, NULL);
+  struct timeval finishedTime, elapsedTime;
+  gettimeofday(&finishedTime, NULL);
 
-  calcute_time_elapsed(time_begin, &time_end, &time_elapsed);
+  calcute_time_elapsed(startTime, &finishedTime, &elapsedTime);
 
  	if(!feof(pipe) && !ferror(pipe) && fgets(buffer, sizeof(buffer), pipe) != NULL){
-    fprintf(output, "0:%02ld.%03ld: %s\n",time_elapsed.tv_sec, time_elapsed.tv_usec, buffer);
-    fflush(output);
+    fprintf(outputFilePtr, "0:%02ld.%03ld: %s\n",elapsedTime.tv_sec, elapsedTime.tv_usec, buffer);
+    fflush(outputFilePtr);
   }
 
 }

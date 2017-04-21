@@ -7,25 +7,26 @@
 #include "writers.h"
 #include "time_functions.h"
 
-void execute_active_process(pid_t active_process_pipe[2], struct timeval *time_begin) {
-  close (active_process_pipe[0]); // close read
+void execute_active_process(pid_t pipeActiveProcess[2], struct timeval *startTime) {
+  close (pipeActiveProcess[0]); // close read
 
   FILE* pipe;
-  pipe = fdopen (active_process_pipe[1], "w");
+  pipe = fdopen (pipeActiveProcess[1], "w");
 
-  int i = 1;
+  int count = 1;
+
   while(1) {
     char message_user[100];
     scanf("%s", message_user);
 
-    struct timeval time_end, time_elapsed;
-    gettimeofday(&time_end, NULL);
+    struct timeval finishedTime, elapsedTime;
+    gettimeofday(&finishedTime, NULL);
 
-    calcute_time_elapsed(time_begin, &time_end, &time_elapsed);
+    calcute_time_elapsed(startTime, &finishedTime, &elapsedTime);
 
-    writer_pipe_active_process(message_user, &time_elapsed, pipe, i);
-    i++;
+    output_pipe_active_process(message_user, &elapsedTime, pipe, count);
+    count++;
   }
 
-  close (active_process_pipe[1]);
+  close (pipeActiveProcess[1]);
 }

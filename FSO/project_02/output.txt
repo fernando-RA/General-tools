@@ -1,0 +1,4 @@
+0:01.269: 0:01.114: Mensagem do 01 do filho dorminhoco
+
+0:01.365783: 0:01.365627: Mensagem do 01 do usuario: <dsakjdlask>
+
