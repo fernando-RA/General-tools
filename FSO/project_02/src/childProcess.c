@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
-
-#include "children.h"
-#include "writers.h"
-#include "time_functions.h"
+#include "coreIncludes.h"
 
 void execute_lazy_child(pid_t pipeSleepyChild[2], struct timeval *startTime) {
   close (pipeSleepyChild[0]); // close read

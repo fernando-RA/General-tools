@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-
-#include "writers.h"
-#include "time_functions.h"
+#include "coreIncludes.h"
 
 void output_pipe_active_process(const char* message, struct timeval *elapsedTime, FILE* pipe, int i) {
   fprintf(pipe, "0:%02ld.%03ld: Mensagem do %02d do usuario: <%s>\n", elapsedTime->tv_sec, elapsedTime->tv_usec, i, message);
