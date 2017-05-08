@@ -19,7 +19,7 @@ OBJDIR   = obj
 BINDIR   = bin
 
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
-INCLUDES := $(wildcard $(SRCDIR)/*.h)
+INCLUDES := $(wildcard $(LIBDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
@@ -43,4 +43,4 @@ remove: clean
 		@echo "Executable removed!"
 
 run:
-		./$(BINDIR)/$(TARGET)
+		./$(BINDIR)/$(TARGET) output.txt
