@@ -1,8 +1,8 @@
 #ifndef __CONTROL_THREAD_H__
 #define __CONTROL_THREAD_H__
 
-void log_info_console();
-void log_info_file();
+void log_info_console(Information info_storage);
+void log_info_file(Information info_storage);
 
 void terminate_program(int signal);
 

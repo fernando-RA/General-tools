@@ -5,7 +5,7 @@ TARGET   = Threads_ProducerConsumer
 CC       = gcc
 
 # compiling flags
-CFLAGS   = -Wall -I. -lm
+CFLAGS   = -Wall -I. -lm -lpthread
 LINKER   = gcc -o
 
 # linking flags

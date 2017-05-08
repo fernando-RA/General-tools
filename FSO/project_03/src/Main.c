@@ -1,6 +1,17 @@
 #include "../lib/CoreIncludes.h"
 #include "../lib/InformationUtility.h"
 
+/*
+  TODO
+    -> solve compilation problems
+    -> pass info_storage by pointer on initial lines of controlThread
+    -> Find a way on makefile to specify imports on lib folder
+    -> Producer thread
+    -> Consumer thread
+    -> Run tests
+    -> Documentation
+*/
+
 int main(int argc, char const *argv[]) {
   //Declarations
   char* fileName;
@@ -18,7 +29,6 @@ int main(int argc, char const *argv[]) {
 
   strorageInfo = initilize_info_struct(strorageInfo, fileName);
   printf("filename = %d\n", random_number_generator());
-  
-  log_info_console();
+
   return 0;
 }
