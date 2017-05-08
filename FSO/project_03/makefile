@@ -5,13 +5,12 @@ TARGET   = Threads_ProducerConsumer
 CC       = gcc
 
 # compiling flags
-CFLAGS   =
-
+CFLAGS   = -Wall -I. -lm
 LINKER   = gcc -o
 
 # linking flags
-LFLAGS   =  -lpthread
-#-Wall -I. -lm
+LFLAGS   =  -lpthread -Wall -I. -lm
+
 # change these to proper directories where each file should be
 SRCDIR   = src
 LIBDIR	 = lib
@@ -28,7 +27,7 @@ $(BINDIR)/$(TARGET): $(OBJECTS)
 		@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
 		@echo "Linking complete!"
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c $(LIBDIR)/%.h
 		@$(CC) $(CFLAGS) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 
