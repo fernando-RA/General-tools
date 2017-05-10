@@ -1,5 +1,5 @@
-#ifndef _THREAD_PRODUCER_CONSUMER_H
-#define _THREAD_PRODUCER_CONSUMER_H
+#ifndef __THREAD_PRODUCER_CONSUMER_H__
+#define __THREAD_PRODUCER_CONSUMER_H__
 
   void controll_threads(Information info_storage);
   void* control_consumer_thread (void* received_threads);

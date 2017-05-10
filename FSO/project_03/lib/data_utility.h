@@ -1,5 +1,5 @@
-#ifndef VECTOR_INFORMATION_H
-#define VECTOR_INFORMATION_H
+#ifndef __DATA_UTILITY_H__
+#define __DATA_UTILITY_H__
 
 #define MAX_BUFFER_SIZE 50
 

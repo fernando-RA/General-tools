@@ -2,9 +2,6 @@
 
 Information *info_storage;
 
-
-
-
 void* wait_terminate_threads (void* received_threads) {
   info_storage = (Information*) received_threads;
 
