@@ -1,21 +1,54 @@
-[producao]: Numero gerado: 179180823
-[consumo a]: Numero lido: 179180823
-[producao]: Numero gerado: -921084003
-[consumo a]: Numero lido: -921084003
-[producao]: Numero gerado: -449710393
-[consumo a]: Numero lido: -449710393
-[producao]: Numero gerado: 760054512
-[producao]: Numero gerado: -445473791
-[consumo a]: Numero lido: -445473791
-[consumo b]: Numero lido: 760054512
-[producao]: Numero gerado: 296907899
-[consumo a]: Numero lido: 296907899
-[producao]: Numero gerado: 149496335
-[producao]: Numero gerado: 673667733
-[consumo a]: Numero lido: 673667733
-[consumo b]: Numero lido: 149496335
+[producao]: Numero gerado: -882637289
+[consumo a]: Numero lido: -882637289
+[producao]: Numero gerado: -407336689
+[consumo a]: Numero lido: -407336689
+[producao]: Numero gerado: 731455861
+[consumo a]: Numero lido: 731455861
+[producao]: Numero gerado: -843306849
+[producao]: Numero gerado: 381730071
+[consumo a]: Numero lido: 381730071
+[consumo b]: Numero lido: -843306849
+[producao]: Numero gerado: 1060333116
+[consumo a]: Numero lido: 1060333116
+[producao]: Numero gerado: -170473782
+[producao]: Numero gerado: 74024701
+[consumo a]: Numero lido: 74024701
+[consumo b]: Numero lido: -170473782
+[producao]: Numero gerado: 300582846
+[consumo a]: Numero lido: 300582846
+[producao]: Numero gerado: -785259967
+[producao]: Numero gerado: 342286345
+[consumo a]: Numero lido: 342286345
+[consumo b]: Numero lido: -785259967
+[producao]: Numero gerado: -1031225206
+[consumo a]: Numero lido: -1031225206
+[producao]: Numero gerado: 597366901
+[producao]: Numero gerado: -697943802
+[consumo a]: Numero lido: -697943802
+[consumo b]: Numero lido: 597366901
+[producao]: Numero gerado: 438531536
+[consumo a]: Numero lido: 438531536
+[producao]: Numero gerado: 632299777
+[producao]: Numero gerado: -477008198
+[consumo a]: Numero lido: -477008198
+[consumo b]: Numero lido: 632299777
+[producao]: Numero gerado: -274599836
+[consumo a]: Numero lido: -274599836
+[producao]: Numero gerado: 372840070
+[producao]: Numero gerado: -333078564
+[consumo a]: Numero lido: -333078564
+[consumo b]: Numero lido: 372840070
+[producao]: Numero gerado: -173274621
+[consumo a]: Numero lido: -173274621
+[producao]: Numero gerado: -32042602
+[producao]: Numero gerado: 821179744
+[consumo a]: Numero lido: 821179744
+[consumo b]: Numero lido: -32042602
+[producao]: Numero gerado: -20688708
+[consumo a]: Numero lido: -20688708
+[producao]: Numero gerado: -577275234
 [aviso]: Termino solicitado. Aguardando threads...
-[aviso]: Maior numero gerado: 760054512
-[aviso]: Menor numero gerado: -921084003
+[aviso]: Maior numero gerado: 1060333116
+[aviso]: Menor numero gerado: -1031225206
 [aviso]: Maior ocupacao de buffer: 2
 [aviso]: Aplicacao encerrada.
