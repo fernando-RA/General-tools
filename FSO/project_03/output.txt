@@ -1,0 +1,21 @@
+[producao]: Numero gerado: 179180823
+[consumo a]: Numero lido: 179180823
+[producao]: Numero gerado: -921084003
+[consumo a]: Numero lido: -921084003
+[producao]: Numero gerado: -449710393
+[consumo a]: Numero lido: -449710393
+[producao]: Numero gerado: 760054512
+[producao]: Numero gerado: -445473791
+[consumo a]: Numero lido: -445473791
+[consumo b]: Numero lido: 760054512
+[producao]: Numero gerado: 296907899
+[consumo a]: Numero lido: 296907899
+[producao]: Numero gerado: 149496335
+[producao]: Numero gerado: 673667733
+[consumo a]: Numero lido: 673667733
+[consumo b]: Numero lido: 149496335
+[aviso]: Termino solicitado. Aguardando threads...
+[aviso]: Maior numero gerado: 760054512
+[aviso]: Menor numero gerado: -921084003
+[aviso]: Maior ocupacao de buffer: 2
+[aviso]: Aplicacao encerrada.

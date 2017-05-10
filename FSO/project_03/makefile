@@ -1,15 +1,14 @@
 
 # project name (generate executable with this name)
 TARGET   = Threads_ProducerConsumer
-
 CC       = gcc
 
 # compiling flags
-CFLAGS   = -Wall -I. -lm -lpthread
+CFLAGS   = -Wall -I. -I'lib' -pthread -Wno-implicit-function-declaration
 LINKER   = gcc -o
 
 # linking flags
-LFLAGS   =  -lpthread -Wall -I. -lm
+LFLAGS   =  -pthread -I'lib' -Pedantic -Wall -Ansi
 
 # change these to proper directories where each file should be
 SRCDIR   = src
@@ -20,14 +19,15 @@ BINDIR   = bin
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(LIBDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+LIBRARY  := $(INCLUDES:$(LIBDIR)/%.h)
 rm       = rm -f
 
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-		@$(LINKER) $@ $(LFLAGS) $(OBJECTS)
+		@$(LINKER) $@ $(CFLAGS) $(OBJECTS)
 		@echo "Linking complete!"
 
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c $(LIBDIR)/%.h
+$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 		@$(CC) $(CFLAGS) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 
