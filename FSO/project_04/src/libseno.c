@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 
 #define PI 3.1415926535897932384650288
 #define TERMS 10
@@ -27,7 +26,7 @@ double my_pow(double base, int exponent){
       return base*temp*temp;
     }
     else{
-      return (temp*temp)/base; //negative exponent computation
+      return (temp*temp)/base;
     }
   }
 }
@@ -41,15 +40,4 @@ double seno(double angulo){
     seno = seno + tempSin;
   }
   return seno;
-}
-
-
-int main(){
-  double resposta;
-
-  resposta = seno(1.57);
-
-  printf("resposta sine = %lf\n", seno(1.57));
-
-  return 0;
 }
