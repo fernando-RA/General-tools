@@ -1,53 +1,15 @@
+main: main.o libseno.so
+	 gcc -o main main.o -L. -lseno -Wl,-rpath,./
 
-# executable
-TARGET   = library
-CC       = gcc
+main.o: main.c libseno.h
+	gcc -c main.c
 
-# compiling flags
-CFLAGS   = -Wall -I. -lm
-LINKER   = gcc -o
+libseno.so: libseno.o
+	gcc -shared -fPIC -o libseno.so libseno.o
 
-# linking flags
-LFLAGS   = -I'lib' -l:libseno.a -Wl -rpath,./
+libseno.o: libseno.c
+	gcc -fPIC -o libseno.o -c libseno.c
 
-# directories
-SRCDIR   = src
-LIBDIR	 = lib
-OBJDIR   = obj
-BINDIR   = bin
-
-# paths
-SOURCES  := $(wildcard $(SRCDIR)/*.c)
-INCLUDES := $(wildcard $(LIBDIR)/*.h)
-OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
-LIBRARY  := $(INCLUDES:$(LIBDIR)/%.h)
-rm       = rm -f
-
-
-# linking rules
-$(BINDIR)/$(TARGET): $(OBJECTS) libseno.a
-		@$(LINKER) $@ $(CFLAGS) $(OBJECTS) -lm
-		@echo "Linking complete!"
-
-# compiling rules
-$(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
-		@$(CC) $(CFLAGS) -c $< -o $@
-		@echo "Compiled "$<" successfully!"
-
-# Library rules
-libseno.a: libseno.o
-	ar cr libseno.a libseno.o
-
-
-run:
-		./$(BINDIR)/$(TARGET)
-
-.PHONY: clean
 clean:
-		@$(rm) $(OBJECTS)
-		@echo "Cleanup complete!"
-
-.PHONY: remove
-remove: clean
-		@$(rm) $(BINDIR)/$(TARGET)
-		@echo "Executable removed!"
+	rm -f *.o
+	rm libseno.so

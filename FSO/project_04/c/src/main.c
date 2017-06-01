@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <dlfcn.h>
 
 #include "libseno.h"
@@ -24,8 +25,8 @@ int main(int argc, char** argv) {
         printf("seno (%.2lf) = %.4lf\n", angle, m_sine);
       }
 
-      dynamic_load(angle, "arco_seno");
       else if (strcmp(argv[i], "-a") == 0){
+        dynamic_load(angle, "arco_seno");
         printf("arc_seno (%.2lf) = %.4lf\n", m_sine, m_arco_seno);
       }
     }
@@ -49,5 +50,7 @@ void dynamic_load(double rads, char * function_name){
     printf("%s\n", error);
     exit(1);
   }
+
+  printf("%lf\n", (*function)(rads) );
   dlclose(handle);
 }
