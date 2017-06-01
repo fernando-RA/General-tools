@@ -19,7 +19,7 @@ As informações sobre o ambiente de compilação e construção estão citados 
 ## Compilação
 
 ### GCC
-> gcc version 6.2.0 20160901 (Ubuntu 6.2.0-3ubuntu11~16.04) 
+> gcc version 6.2.0 20160901 (Ubuntu 6.2.0-3ubuntu11~16.04)
 
 ### AR
 > GNU ar version 2.27-21.fc26
@@ -36,14 +36,14 @@ Para compilar este projeto, basta executar o comando a seguir,
 Para limpar o ambiente use o comando a seguir,
 
     make clean
-    
-Para testar a execução do programa sem informar parâmetros iniciais, 
-    
+
+Para testar a execução do programa sem informar parâmetros iniciais,
+
     make run
-    
+
 # Instruções de uso
 
-Após a compilação, gerão geradas 2 pastas chamadas ./bin e ./obj. 
+Após a compilação, gerão geradas 2 pastas chamadas ./bin e ./obj.
 
 Na pasta bin estarão 3 executáveis chamados de:
 
@@ -68,18 +68,21 @@ Deve ser informado o valor do ângulo em radianos.
 * As limitações identificadas estão relacionadas a quantidade de casas decimais das contas.
 * O programa possui também limitações quanto a valores de seno maiores que 1.
 * O programa possui mal funcionamento ao executar a função arco_seno
+* Caso seja digitado um caracter onde deve ser digitado o ângulo, o resultado é calculado para o ângulo 0 (zero).
 
 # Questões
 
-1. Para a resolução dos itens A e B do enunciado do trabalho, não foram necessárias nenhuma modificação no código. Mudou-se apenas a maneira de gerar as bibliotecas e a maneira de realizar a compilação de cada item, adicionando a biblioteca estática ou dinâmica.
-1. A criação de um link estático com a biblioteca impossibilita que esta seja trocada, ou seja, uma vez compilado o código, não há como alterar o comportamento da biblioteca utilizada. Diferentemente da utilização do link dinâmico, que possibilita que a biblioteca seja carregada em pelo loader. Isso indica que, é possível realizar a troca da biblioteca original, por uma customizada. Também é notável que, por ser carregada dinâmicamente, vários programas podem ter acesso a essa mesma biblioteca e reduzir a quantidade de código fonte carregado na memória, pois ela é carregada quando vai ser utilizada e esta mesma biblioteca pode ser compartilhada por vários programas.
+1. Para a resolução dos itens A e B do enunciado do trabalho, não foram necessárias nenhuma modificação no código. Mudou-se apenas a maneira de compilar cada arquivo, de acordo com as necessidades foram feitas devidas alterações no makefile. No item A cria-se um arquivo de biblioteca extensão *.a*, no item B cria-se um arquivo de biblioteca com extensão *.so*
+
+1. A criação de um link estático com a biblioteca impossibilita a alteração de comportamento caso necessário. Uma vez compilado, é possivel realizar mudanças apenas compilando novamente. Utilizando do link dinâmico é possivel o carregamento da biblioteca pelo loader o que indica a possibilidade de alterações na biblioteca original. Também é notável que, por ser carregada dinâmicamente, vários programas podem ter acesso a essa mesma biblioteca, reduzindo a quantidade de codigo que será carregado de acordo com as necessidades, podendo ser utilizada por diversos programas diferentes. A principal desvantagem está no que se refere a intuitividade no uso das bibliotecas. Sendo baixo o valor de aplicabilidade em sistemas e programas de menor escala.
+
 1. Relação das dependências:
     1. Estática
-        1. Na compilação da aplicação com biblioteca estática é necessário apenas a utilização da libc e libseno. Para a execução não é necessária dependência nenhuma.
+        1. Na compilação da aplicação com biblioteca estática é necessário apenas a utilização de alagumas bibliotecas cp,p libc e libseno e libstring. Para a execução não é necessária dependência nenhuma.
         1. A posição desta biblioteca fica na área de texto (código fonte) do processo.
     1. Dinâmica
         1. Para a compilação da biblioteca dinâmica, é necessário também, somente a libc e a libseno. Para a execução, é exigido que exista a biblioteca nos caminhos que o Sistema Operacional busca as bibliotecas, não é necessária nenhuma outra dependência.
         1. Fica como armazenado em área de referência de memória do processo.
     1. Sob demanda
-        1. Para a compilação da aplicação, é exigido as bibliotecas libc e libdl, para que seja possível fazer uso da dlfcn.h. Para a execução é preciso também adicionar o caminho para encontrar a biblioteca.
+        1. para a carga sobre demanda são necessárias linux-vdso.so.1, libdl.so.2, libc.so.6 e ld-linux-x86-64.so.2.
         1. Fica na área de heap do processo

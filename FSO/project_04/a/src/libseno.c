@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "libseno.h"
-#include "math.h"
 
 #define PI 3.1415926535897932384650288
 #define TERMS 10
@@ -37,20 +35,17 @@ double seno(double angulo){
 
 
 double arco_seno(double seno){
-  double somador = 0, dividendo = 0;
-  int k = 0, divisor = 0;
+    double ultimo, soma;
+    int i;
 
-  if(seno<1){
-      for(k=0;k<4;k++){
-        dividendo = my_pow(seno, 1+2*k)*(1.0/2.0)*k;
-        // printf("dividendo = %lf  ",dividendo);
-        divisor = fatorial(k)+2*k*fatorial(k);
-        // printf("divisor = %d\n",divisor);
-        somador+=dividendo/divisor;
-      }
+    ultimo = soma = seno;
+
+    for(i = 1; i <= 1000; i++)
+    {
+        ultimo *= ((seno*seno)*(2*i-1)*(2*i-1))/((2*i)*(2*i+1));
+        soma += ultimo;
     }
-    return somador;
-
+    return soma;
 }
 // double arco_seno(double rads){
 //   double root = sqrt(1 - my_pow(rads, 2));
