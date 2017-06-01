@@ -8,7 +8,7 @@ CFLAGS   = -Wall -I. -lm
 LINKER   = gcc -o
 
 # linking flags
-LFLAGS   = -I'lib' -Pedantic -Wall -Ansi
+LFLAGS   = -I'lib' -l:libseno.a -Wl -rpath,./
 
 # directories
 SRCDIR   = src
@@ -23,8 +23,9 @@ OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 LIBRARY  := $(INCLUDES:$(LIBDIR)/%.h)
 rm       = rm -f
 
+
 # linking rules
-$(BINDIR)/$(TARGET): $(OBJECTS)
+$(BINDIR)/$(TARGET): $(OBJECTS) libseno.a
 		@$(LINKER) $@ $(CFLAGS) $(OBJECTS) -lm
 		@echo "Linking complete!"
 
@@ -33,7 +34,11 @@ $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 		@$(CC) $(CFLAGS) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
 
-# general rules
+# Library rules
+libseno.a: libseno.o
+	ar cr libseno.a libseno.o
+
+
 run:
 		./$(BINDIR)/$(TARGET)
 

@@ -1,5 +1,5 @@
 
-# project name (generate executable with this name)
+# executable
 TARGET   = library
 CC       = gcc
 
@@ -8,28 +8,37 @@ CFLAGS   = -Wall -I. -lm
 LINKER   = gcc -o
 
 # linking flags
-LFLAGS   = -I'lib' -Pedantic -Wall -Ansi
+LFLAGS   = -I'lib' -l:libseno.a -Wl -rpath,./
 
-# change these to proper directories where each file should be
+# directories
 SRCDIR   = src
 LIBDIR	 = lib
 OBJDIR   = obj
 BINDIR   = bin
 
+# paths
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(LIBDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 LIBRARY  := $(INCLUDES:$(LIBDIR)/%.h)
 rm       = rm -f
 
-
-$(BINDIR)/$(TARGET): $(OBJECTS)
+# linking rules
+$(BINDIR)/$(TARGET): $(OBJECTS) libseno.a
 		@$(LINKER) $@ $(CFLAGS) $(OBJECTS) -lm
 		@echo "Linking complete!"
 
+# compiling rules
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
 		@$(CC) $(CFLAGS) -c $< -o $@
 		@echo "Compiled "$<" successfully!"
+
+# Library rules
+libseno.a:
+	ar cr libseno.a $(OBJDIR)/libseno.o
+
+run:
+		./$(BINDIR)/$(TARGET)
 
 .PHONY: clean
 clean:
@@ -40,6 +49,3 @@ clean:
 remove: clean
 		@$(rm) $(BINDIR)/$(TARGET)
 		@echo "Executable removed!"
-
-run:
-		./$(BINDIR)/$(TARGET)
