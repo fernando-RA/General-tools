@@ -4,11 +4,11 @@ TARGET   = library
 CC       = gcc
 
 # compiling flags
-CFLAGS   = -Wall -I. -I'lib'
+CFLAGS   = -Wall -I. -lm
 LINKER   = gcc -o
 
 # linking flags
-LFLAGS   =  -pthread -I'lib' -Pedantic -Wall -Ansi
+LFLAGS   = -I'lib' -Pedantic -Wall -Ansi
 
 # change these to proper directories where each file should be
 SRCDIR   = src
@@ -24,7 +24,7 @@ rm       = rm -f
 
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
-		@$(LINKER) $@ $(CFLAGS) $(OBJECTS)
+		@$(LINKER) $@ $(CFLAGS) $(OBJECTS) -lm
 		@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
