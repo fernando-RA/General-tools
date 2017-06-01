@@ -12,4 +12,4 @@ libseno.o: libseno.c
 
 clean:
 	rm -f *.o
-	rm libseno.so
+	rm libseno.so main
