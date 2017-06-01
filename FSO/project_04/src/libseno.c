@@ -41,3 +41,26 @@ double seno(double angulo){
   }
   return seno;
 }
+
+
+
+double arc_seno(double seno){
+    double elemento1 = ((seno * seno * seno * seno) / 6);
+    double elemento2 = (seno * seno * seno * seno * seno / 10);
+    double elemento3 = (seno * seno * seno * seno * seno * seno * seno / 24);
+    double elemento4 = (seno * seno * seno * seno * seno * seno * seno * seno * seno) / 108;
+
+    double arcseno = elemento1 + elemento2 + elemento3 + elemento4;
+
+  return arcseno;
+  // double resultado = 0;
+  // int index;
+  //
+  //
+  // for(index = 0; index < 4; index++){
+  //   resultado += my_pow(seno, index) ;
+  //
+  // }
+  //
+  // return resultado;
+}
