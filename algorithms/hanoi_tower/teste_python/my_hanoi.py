@@ -1,7 +1,14 @@
 import sys
 
+def main():
+    initial_state = readInitialState()
+    checkOrder(initial_state)
+    final_state = readFinalState()
+    print("O estado inicial e igual ao estado final? R:" + str(check(initial_state, final_state)))
+    #solve(initial_state, final_state)
+
+
 def readInitialState():
-    print "entrou"
     state_map = {}
     #lines = sys.stdin.readlines()
     lines = open('input.txt', 'r')
@@ -9,9 +16,8 @@ def readInitialState():
         peg_pair = line.strip().split('-')
         state_map[peg_pair[0]] = peg_pair[1].split(':')
     file.close
-    print state_map
-
     return state_map
+
 
 def checkOrder(mapa):
     for k in mapa:
@@ -28,9 +34,9 @@ def readFinalState():
     pos = []
 
     for i in range(3):
-        x = raw_input("Ordem de " + str(org[i]) + '\n')
-        #print(x)
-        peg_pair = x.strip().split('-')
+        final_state_configuration = raw_input("Ordem de " + str(org[i]) + '\n')
+        print final_state_configuration
+        peg_pair = final_state_configuration.strip().split('-')
         final_state_map[peg_pair[0]] = peg_pair[1].split(':')
 
     return final_state_map
@@ -38,7 +44,7 @@ def readFinalState():
 
 """
 def findState(initial_state, final_state, pegs=3):
-    
+
     queue = [(initial_state, 0)]
     tree = {istate: None}
 
@@ -72,10 +78,8 @@ def moveDisk(fp, tp):
 
 """
 
+
 def check(initial_state, final_state):
-    """
-        provavel funcao para checar se sao iguais
-    """
     for k in initial_state:
         if(len(initial_state[k]) == len(final_state[k])):
             for i in range(len(initial_state[k])):
@@ -83,15 +87,7 @@ def check(initial_state, final_state):
                     return False
         else:
             return False
-
     return True
 
-initial_state = readInitialState()
-checkOrder(initial_state)
-final_state = readFinalState()
-
-
-print(check(initial_state, final_state))
-#solve(initial_state, final_state)
-
-
+if __name__ == "__main__":
+   main()
