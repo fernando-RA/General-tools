@@ -20,12 +20,14 @@ def readInitialState():
 
 
 def checkOrder(mapa):
-    for k in mapa:
-        if(len(mapa[k])) > 1:
-            maior = mapa[k][0]
-            for valor in mapa[k]:
-                if(maior < valor):
-                    print("O disco " + str(valor) + " ta errado")
+    for disk in mapa:
+        array_size = len(mapa[disk])
+        if(array_size) > 1:
+            for index, valor in enumerate(mapa[disk]):
+                if(index < array_size - 1):
+                    next_disk = mapa[disk][(index + 1)]
+                if(next_disk > valor):
+                    print("--- O disco " + str(valor) + " esta em cima do disco " + str(next_disk) + " ---\n")
                     raise ValueError, 'Input invalido'
 
 def readFinalState():
