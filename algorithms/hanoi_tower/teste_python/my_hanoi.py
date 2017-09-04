@@ -4,8 +4,8 @@ PEG_NUMBER = 3
 DISK_NUMBER = 4
 
 def main():
-    initial_state = readInitialState()
-    checkOrder(initial_state)
+    initial_state = readInitialState("input.txt")
+    checkDisksOrder(initial_state)
     final_state = readFinalState()
 
     print initial_state
@@ -15,31 +15,18 @@ def main():
     #solve(initial_state, final_state)
 
 
-def readInitialState():
+def readInitialState(filename):
     state_map = {}
-    #lines = sys.stdin.readlines()
-    lines = open('input.txt', 'r')
+    lines = open(filename, 'r')
     for line in lines:
         peg_pair = line.strip().split('-')
         state_map[peg_pair[0]] = peg_pair[1].split(':')
     file.close
     return state_map
 
-def checkOrder(mapa):
-    for peg in mapa:
-        array_size = len(mapa[peg])
-        if(array_size) > 1:
-            for disk, valor in enumerate(mapa[peg]):
-                if(disk < array_size - 1):
-                    next_disk = mapa[peg][(disk + 1)]
-                if(next_disk > valor):
-                    print("--- O disco " + str(valor) + " esta em cima do disco " + str(next_disk) + " ---\n")
-                    raise ValueError, 'Input invalido'
-
 def readFinalState():
     org = ['A','B','C']
     final_state_map = {}
-    pos = []
 
     for peg in range(3):
         final_state_configuration = raw_input("Ordem de " + str(org[peg]) + '\n')
@@ -48,6 +35,18 @@ def readFinalState():
         final_state_map[peg_pair[0]] = peg_pair[1].split(':')
 
     return final_state_map
+
+def checkDisksOrder(mapa):
+    for peg in mapa:
+        array_size = len(mapa[peg])
+        if(array_size) > 1:
+            for disk, valor in enumerate(mapa[peg]):
+                if(disk < array_size - 1):
+                    next_disk = mapa[peg][(disk + 1)]
+                if(next_disk > valor):
+                    print("O disco " + str(valor) + " esta em cima do disco " + str(next_disk) + "\n")
+                    return False
+    return True
 
 def checkStatesEquality(initial_state, final_state):
     for peg in initial_state:
