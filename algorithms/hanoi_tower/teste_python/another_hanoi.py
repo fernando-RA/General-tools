@@ -1,6 +1,6 @@
 import sys
 
-MAX_MOVES = 10
+MAX_MOVES = 500
 
 def main():
     lines = sys.stdin.readlines()

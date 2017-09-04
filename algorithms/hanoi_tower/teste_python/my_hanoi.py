@@ -1,10 +1,17 @@
 import sys
 
+PEG_NUMBER = 3
+DISK_NUMBER = 4
+
 def main():
     initial_state = readInitialState()
     checkOrder(initial_state)
     final_state = readFinalState()
-    print("O estado inicial e igual ao estado final? R:" + str(check(initial_state, final_state)))
+
+    print initial_state
+    print final_state
+
+    print("O estado inicial e igual ao estado final? R:" + str(checkStatesEquality(initial_state, final_state)))
     #solve(initial_state, final_state)
 
 
@@ -18,14 +25,13 @@ def readInitialState():
     file.close
     return state_map
 
-
 def checkOrder(mapa):
-    for disk in mapa:
-        array_size = len(mapa[disk])
+    for peg in mapa:
+        array_size = len(mapa[peg])
         if(array_size) > 1:
-            for index, valor in enumerate(mapa[disk]):
-                if(index < array_size - 1):
-                    next_disk = mapa[disk][(index + 1)]
+            for disk, valor in enumerate(mapa[peg]):
+                if(disk < array_size - 1):
+                    next_disk = mapa[peg][(disk + 1)]
                 if(next_disk > valor):
                     print("--- O disco " + str(valor) + " esta em cima do disco " + str(next_disk) + " ---\n")
                     raise ValueError, 'Input invalido'
@@ -35,57 +41,19 @@ def readFinalState():
     final_state_map = {}
     pos = []
 
-    for i in range(3):
-        final_state_configuration = raw_input("Ordem de " + str(org[i]) + '\n')
+    for peg in range(3):
+        final_state_configuration = raw_input("Ordem de " + str(org[peg]) + '\n')
         print final_state_configuration
         peg_pair = final_state_configuration.strip().split('-')
         final_state_map[peg_pair[0]] = peg_pair[1].split(':')
 
     return final_state_map
 
-
-"""
-def findState(initial_state, final_state, pegs=3):
-
-    queue = [(initial_state, 0)]
-    tree = {istate: None}
-
-    while queue:
-        cstate = queue[0][0]
-        cmove = queue[0][1]
-        queue.pop(0)
-
-        for from_peg, dest_peg in findValidMoves(cstate):
-            if from_peg in cstate:
-                nstate = list(cstate)
-                nstate[cstate.index(from_peg)] = dest_peg
-                nstate = tuple(nstate)
-                if nstate not in tree:
-                    tree[nstate] = cstate
-                    if nstate == fstate:
-                        return tree
-                    queue.append((nstate, cmove +1 ))
-
-    return tree
-
-def moveTower(height, fromPole, toPole, withPole):
-    if height > 1:
-        print("  "*(3-height), "movetower: ", height, fromPole, toPole)
-        moveTower(height - 1, fromPole, withPole, toPole)
-        moveDisk(fromPole, toPole)
-        moveTower(height - 1, withPole, toPole, fromPole)
-
-def moveDisk(fp, tp):
-    print("Movimento de disco ", fp, "para", tp)
-
-"""
-
-
-def check(initial_state, final_state):
-    for k in initial_state:
-        if(len(initial_state[k]) == len(final_state[k])):
-            for i in range(len(initial_state[k])):
-                if initial_state[k][i] != final_state[k][i]:
+def checkStatesEquality(initial_state, final_state):
+    for peg in initial_state:
+        if(len(initial_state[peg]) == len(final_state[peg])):
+            for disk in range(len(initial_state[peg])):
+                if initial_state[peg][disk] != final_state[peg][disk]:
                     return False
         else:
             return False
