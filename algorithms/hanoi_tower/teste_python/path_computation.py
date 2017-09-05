@@ -1,59 +1,6 @@
-num_pegs = 3
-num_discs = 4
-import sys
-from string import ascii_uppercase
-pegs = ascii_uppercase[:num_pegs]
+num_pegs = 5
+num_discs = 8
 
-def main():
-
-    # Build graph
-    G = build()
-
-    # Sample
-    src = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']
-    dst = ['B', 'B', 'B', 'B', 'B', 'B', 'B', 'B']
-
-    initial_state = readInitialState("input.txt")
-    checkDisksOrder(initial_state)
-    final_state = readFinalState()
-
-    # Solution
-    path = bfs(G, get_state_id(src), get_state_id(dst))[::-1]
-    for i in range(len(path)-1):
-        print(move(get_state(path[i]), get_state(path[i+1])))
-
-def readInitialState(filename):
-    state_map = {}
-    lines = open(filename, 'r')
-    for line in lines:
-        peg_pair = line.strip().split('-')
-        state_map[peg_pair[0]] = peg_pair[1].split(':')
-    file.close
-    return state_map
-
-def readFinalState():
-    org = ['A','B','C']
-    final_state_map = {}
-
-    for peg in range(3):
-        final_state_configuration = raw_input("Ordem de " + str(org[peg]) + '\n')
-        print final_state_configuration
-        peg_pair = final_state_configuration.strip().split('-')
-        final_state_map[peg_pair[0]] = peg_pair[1].split(':')
-
-    return final_state_map
-
-def checkDisksOrder(mapa):
-    for peg in mapa:
-        array_size = len(mapa[peg])
-        if(array_size) > 1:
-            for disk, valor in enumerate(mapa[peg]):
-                if(disk < array_size - 1):
-                    next_disk = mapa[peg][(disk + 1)]
-                if(next_disk > valor):
-                    print("O disco " + str(valor) + " esta em cima do disco " + str(next_disk) + "\n")
-                    return False
-    return True
 
 def get_state(state_id):
     state = []
@@ -133,4 +80,14 @@ def move(src, dst):
             return 'disc %d from %c to %c' % (i+1, src[i], dst[i])
 
 if __name__ == "__main__":
-   main()
+    # Build graph
+    G = build()
+
+    # Sample
+    src = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']
+    dst = ['B', 'B', 'B', 'B', 'B', 'B', 'B', 'B']
+
+    # Solution
+    path = bfs(G, get_state_id(src), get_state_id(dst))[::-1]
+    for i in range(len(path)-1):
+        print(move(get_state(path[i]), get_state(path[i+1])))
