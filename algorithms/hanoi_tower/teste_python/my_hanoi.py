@@ -1,8 +1,8 @@
-num_pegs = 3
-num_discs = 4
+NUM_PEGS = 3
+NUM_DISCS = 4
 import sys
 from string import ascii_uppercase
-pegs = ascii_uppercase[:num_pegs]
+pegs = ascii_uppercase[:NUM_PEGS]
 
 def main():
 
@@ -10,37 +10,39 @@ def main():
     G = build()
 
     # Sample
-    src = ['A', 'A', 'A', 'A', 'A', 'A', 'A', 'A']
-    dst = ['B', 'B', 'B', 'B', 'B', 'B', 'B', 'B']
-
     initial_state = readInitialState("input.txt")
-    checkDisksOrder(initial_state)
+    #checkDisksOrder(initial_state)
     final_state = readFinalState()
-
+    print initial_state
+    print final_state
     # Solution
-    path = bfs(G, get_state_id(src), get_state_id(dst))[::-1]
+    path = bfs(G, get_state_id(initial_state), get_state_id(final_state))[::-1]
     for i in range(len(path)-1):
         print(move(get_state(path[i]), get_state(path[i+1])))
 
 def readInitialState(filename):
-    state_map = {}
+    state_map = [None] * NUM_DISCS
     lines = open(filename, 'r')
     for line in lines:
         peg_pair = line.strip().split('-')
-        state_map[peg_pair[0]] = peg_pair[1].split(':')
+        if peg_pair[1] is not '':
+            disks_in_peg = enumerate(peg_pair[1].split(':'))
+            for disk, value in disks_in_peg :
+                state_map[int(value)-1] = peg_pair[0]
     file.close
     return state_map
 
 def readFinalState():
-    org = ['A','B','C']
-    final_state_map = {}
+    final_state_map = [None] * NUM_DISCS
+    for peg in range(NUM_PEGS):
+        final_state_configuration = raw_input("Ordem final de " + str(pegs[peg]) + ':\n')
+        print (final_state_configuration)
 
-    for peg in range(3):
-        final_state_configuration = raw_input("Ordem de " + str(org[peg]) + '\n')
-        print final_state_configuration
         peg_pair = final_state_configuration.strip().split('-')
-        final_state_map[peg_pair[0]] = peg_pair[1].split(':')
-
+        if peg_pair[1] is not '':
+            disks_in_peg = enumerate(peg_pair[1].split(':'))
+            for disk, value in disks_in_peg :
+                final_state_map[int(value)-1] = peg_pair[0]
     return final_state_map
 
 def checkDisksOrder(mapa):
@@ -57,15 +59,15 @@ def checkDisksOrder(mapa):
 
 def get_state(state_id):
     state = []
-    for i in range(num_discs):
-        state += [pegs[state_id % num_pegs]]
-        state_id /= num_pegs
+    for i in range(NUM_DISCS):
+        state += [pegs[state_id % NUM_PEGS]]
+        state_id /= NUM_PEGS
     return state
 
 def get_state_id(state):
     state_id = 0
-    for disc in range(num_discs):
-        state_id += num_pegs**disc * pegs.index(state[disc])
+    for disc in range(NUM_DISCS):
+        state_id += NUM_PEGS**disc * pegs.index(state[disc])
     return state_id
 
 def get_peg(state_id, disc):
@@ -81,11 +83,11 @@ def fits_on_top(state_id, disc, peg):
 
 def get_valid_moves(state_id):
     valid_moves = []
-    for disc in range(num_discs):
+    for disc in range(NUM_DISCS):
         disc_peg = get_peg(state_id,disc)
         if not fits_on_top(state_id, disc, disc_peg):
             continue
-        for peg in range(num_pegs):
+        for peg in range(NUM_PEGS):
             if peg == disc_peg:
                 continue
             if not fits_on_top(state_id, disc, peg):
@@ -97,12 +99,12 @@ def get_valid_moves(state_id):
 
 def build():
     G = []
-    for state_id in range(num_pegs**num_discs):
+    for state_id in range(NUM_PEGS**NUM_DISCS):
         G += [ get_valid_moves(state_id) ]
     return G
 
 def bfs(G, src, dst):
-    visited = [False] * num_pegs**num_discs
+    visited = [False] * NUM_PEGS**NUM_DISCS
     queue = [ (0,src) ]
     last_of_layer = src
 
@@ -128,9 +130,9 @@ def bfs(G, src, dst):
     return path
 
 def move(src, dst):
-    for i in range(num_discs):
+    for i in range(NUM_DISCS):
         if src[i] != dst[i]:
-            return 'disc %d from %c to %c' % (i+1, src[i], dst[i])
+            return '%d-%c' % (i+1, dst[i])
 
 if __name__ == "__main__":
    main()
