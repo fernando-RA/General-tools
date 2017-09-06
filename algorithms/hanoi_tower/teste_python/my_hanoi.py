@@ -14,10 +14,12 @@ def main():
 
     # Sample
     initial_state = readInitialState("source.txt")
+    print initial_state
     final_state = readFinalState()
 
     # Solution
     path = bfs(G, get_state_id(initial_state), get_state_id(final_state))[::-1]
+
     print "\nSolution:"
     for i in range(len(path)-1):
         print(move(get_state(path[i]), get_state(path[i+1])))
@@ -43,8 +45,8 @@ def checkDisksOrder(filename):
                 if(disk < array_size - 1):
                     next_disk = state_map[peg][(disk + 1)]
                 if(next_disk > valor):
-                    print("ERROR: Disk '" + str(valor) + "' is on top of disk: '" + str(next_disk) + "'\n")
-                    raise ValueError, "Invalid State"
+                    print("Disk '" + str(valor) + "' is on top of disk: '" + str(next_disk) + "'\n")
+                    raise ValueError('Invalid State Map')
     return True
 
 def readInitialState(filename):
@@ -62,7 +64,7 @@ def readInitialState(filename):
 def readFinalState():
     final_state_map = [None] * NUM_DISCS
     for peg in range(NUM_PEGS):
-        final_state_configuration = raw_input("Ordem final de " + str(pegs[peg]) + ':\n')
+        final_state_configuration = raw_input("Estado final da haste " + str(pegs[peg]) + ':\n')
         peg_pair = final_state_configuration.strip().split('-')
         # if there is a disk on peg
         if peg_pair[1] is not '':

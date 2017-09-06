@@ -1,30 +1,25 @@
 import unittest
-from my_hanoi import *
+import my_hanoi
 
 class TestStringMethods(unittest.TestCase):
 
+    # Test of function:
+    # readInitialState(filename):
     def test_reading_initial_state_from_file(self):
-        expected_input = {'A': ['4', '3', '2', '1'], 'C': [''], 'B': ['']}
-        self.assertEqual(readInitialState("testes-unitarios/teste-input.txt"), expected_input)
+        expected_input = ['A', 'A', 'A', 'A']
+        self.assertEqual(my_hanoi.readInitialState("testes-unitarios/teste-input.txt"), expected_input)
 
+    # Test of function:
+    # checkDisksOrder(filename)
     def test_check_disk_wrong_order(self):
-        wrong_order_initial_state = readInitialState("testes-unitarios/teste-input-wrong-order.txt")
-        self.assertFalse(checkDisksOrder(wrong_order_initial_state))
+        with self.assertRaises(ValueError) as context:
+            my_hanoi.checkDisksOrder("testes-unitarios/teste-input-wrong-order.txt")
+            self.assertTrue('Invalid State Map' in context.exception)
 
+    # Test of function:
+    # checkDisksOrder(filename)
     def test_check_disk_correct_order(self):
-        correct_input = readInitialState("testes-unitarios/teste-input.txt")
-        self.assertTrue(checkDisksOrder(correct_input))
-
-    def test_check_states_non_equal(self):
-        initial_state = {'A': ['4', '3', '2', '1'], 'C': [''], 'B': ['']}
-        final_state = {'A': ['4', '3'], 'C': ['2'], 'B': ['3']}
-        self.assertFalse(checkStatesEquality(initial_state, final_state))
-
-    def test_check_states_are_equal(self):
-        initial_state = {'A': ['4', '3'], 'C': ['2'], 'B': ['3']}
-        final_state = {'A': ['4', '3'], 'C': ['2'], 'B': ['3']}
-        self.assertTrue(checkStatesEquality(initial_state, final_state))
-
-
+        self.assertTrue(my_hanoi.checkDisksOrder("testes-unitarios/teste-input.txt"))
+        
 if __name__ == '__main__':
     unittest.main()
