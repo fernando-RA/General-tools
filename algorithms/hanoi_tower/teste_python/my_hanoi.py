@@ -9,12 +9,11 @@ def main():
     G = build()
 
     #Validation
-    checkDisksOrder("source.txt")
-    checkDisksOrder("destination.txt")
+    checkDisksOrder("data-files/source.txt")
+    checkDisksOrder("data-files/destination.txt")
 
     # Sample
-    initial_state = readInitialState("source.txt")
-    print initial_state
+    initial_state = readInitialState("data-files/source.txt")
     final_state = readFinalState()
 
     # Solution
